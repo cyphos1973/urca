@@ -1,0 +1,1 @@
+Application réalisée sous Symfony 4.4 dans le cadre d'évaluation des compétences.
