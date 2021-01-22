@@ -24,11 +24,11 @@
         {
             $messagesRecus = $this->getDoctrine()
                 ->getRepository(Messagerie::class)
-                ->getMessagesRecus($this->getUser()->getUsername());
+                ->getMessagesRecus($this->getUser());
 
             $messagesEnvoyes = $this->getDoctrine()
                 ->getRepository(Messagerie::class)
-                ->getMessagesEnvoyes($this->getUser()->getUsername());
+                ->getMessagesEnvoyes($this->getUser());
 
             return $this->render('backend/messagerie/index.html.twig', [
                 'messagesEnvoyes' => $messagesEnvoyes,
