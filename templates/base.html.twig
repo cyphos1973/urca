@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Welcome!{% endblock %}</title>
+    {% block stylesheets %}{% endblock %}
+    {{ encore_entry_link_tags('frontend') }}
+    {% block javascripts %}{% endblock %}
+</head>
+<body>
+{% block body %}
+    {{ encore_entry_script_tags('frontend') }}
+{% endblock %}
+</body>
+</html>

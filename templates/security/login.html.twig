@@ -1,0 +1,86 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Log in!{% endblock %}
+{% block body %}
+    <form class="form-signin"
+          method="post">
+        {# <div class="text-center mb-1"> #}
+        {# <img class="mb-2" #}
+        {# src="{{ asset('build/images/logo_urca.png') }}" #}
+        {# alt="" #}
+        {# width="50%"> #}
+        {# <h1 class="h3 mb-3 font-weight-normal">Administration</h1> #}
+        {# </div> #}
+        <div class="text-center mb-4">
+            {% for label, messages in app.flashes(['success', 'warning', 'danger', 'info']) %}
+                {% for message in messages %}
+                    <div class="alert alert-{{ label }} fade show ">
+                        <h4>Message
+                            <button type="button"
+                                    class="close"
+                                    data-dismiss="alert"
+                                    aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </h4>
+                        <p>{{ message|raw }}</p>
+                    </div>
+                {% endfor %}
+            {% endfor %}
+        </div>
+        <div class="text-center mb-4">
+            <p class="text-muted">Identifiants</p>
+            <ul class="list-group">
+                <li class="list-group-item">demo1@univ-reims.fr, demo1</li>
+                <li class="list-group-item">demo2@univ-reims.fr, demo2</li>
+            </ul>
+        </div>
+        {% if error %}
+            <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+        {% endif %}
+
+        {% if app.user %}
+            <div class="mb-3">
+                You are logged in as {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>
+            </div>
+        {% endif %}
+
+        <div class="form-label-group">
+            <input type="email"
+                   id="inputEmail"
+                   class="form-control"
+                   name="email"
+                   required
+                   autofocus>
+            <label for="inputEmail">Votre adresse mail</label>
+        </div>
+        <div class="form-label-group">
+            <input type="password"
+                   id="inputPassword"
+                   class="form-control"
+                   name="password"
+                   required>
+            <label for="inputPassword">Password</label>
+        </div>
+        <input type="hidden"
+               name="_csrf_token"
+               value="{{ csrf_token('authenticate') }}"
+        >
+
+        {#
+        Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
+        See https://symfony.com/doc/current/security/remember_me.html
+
+        <div class="checkbox mb-3">
+            <label>
+                <input type="checkbox" name="_remember_me"> Remember me
+            </label>
+        </div>
+        #}
+        <button class="btn btn-lg btn-primary btn-block"
+                type="submit">
+            Se connecter
+        </button>
+        <p class="text-muted"><a href="{{ path('frontend_index') }}">Retour à l'accueil</a></p>
+    </form>
+{% endblock %}
